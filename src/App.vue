@@ -24,10 +24,10 @@
 
       <v-toolbar-title>Inventory Management</v-toolbar-title>
       <v-spacer></v-spacer>
-            <v-menu
-        bottom
-        left
-      >
+        <v-menu
+          bottom
+          left
+        >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon

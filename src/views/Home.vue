@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-card>
-      <v-tabs v-model="tab" background-color="primary" dark>
+      <v-tabs v-model="tab" background-color="#03fcf0" light>
         <v-tab v-for="item in items" :key="item.tab">
           {{ item.tab }}
         </v-tab>
@@ -87,14 +87,17 @@
     </v-card>
 
     <v-bottom-sheet persistent
-    attach hide-overlay="false" v-model="sheet">
-      <v-sheet class="text-center">
+    attach hide-overlay="false" v-model="sheet" color="#03fcf0">
+      <v-sheet class="text-center" color="#03fcf0">
           <v-row align="center" justify="end">
             <v-col cols="12" sm="3">
-              <v-btn icon color="indigo">
-                <v-icon>mdi-camera</v-icon>
-                Take picture
-              </v-btn>
+                <v-file-input
+                  :rules="rules"
+                  multiple
+                  accept="image/png, image/jpeg, image/bmp"
+                  placeholder="Take a picture"
+                  prepend-icon="mdi-camera"
+                ></v-file-input>
             </v-col>
           </v-row>
       </v-sheet>
@@ -110,6 +113,9 @@ export default {
   name: 'Home',
   data() {
     return {
+      rules: [
+        (value) => !value || value.size < 2000000 || 'Picture size should be less than 2 MB!',
+      ],
       sheet: true,
       tab: null,
       items: [
