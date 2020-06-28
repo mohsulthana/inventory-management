@@ -39,7 +39,7 @@
                     </v-list-item>
 
                     <v-card-actions>
-                      <v-btn text>
+                      <v-btn text :to="{path: '/edit-entry'}" target="_blank">
                         <v-icon>mdi-pencil</v-icon>
                         Edit</v-btn>
                     </v-card-actions>
@@ -103,6 +103,9 @@
 </template>
 
 <script>
+/* eslint-disable no-console */
+import axios from 'axios';
+
 export default {
   name: 'Home',
   data() {
@@ -128,5 +131,16 @@ export default {
     };
   },
   components: {},
+  methods: {
+    getObject() {
+      axios.get('api__here')
+        .then((response) => {
+          console.info(response);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  },
 };
 </script>
